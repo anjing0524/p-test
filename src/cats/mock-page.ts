@@ -2,13 +2,19 @@ import { range } from 'lodash';
 import { TableListItem } from 'src/interfaces/page';
 
 const creators = ['付小小', '曲丽丽', '林东东', '陈帅帅', '兼某某'];
+const valueEnum = {
+  0: 'close',
+  1: 'running',
+  2: 'online',
+  3: 'error',
+};
 export default range(0, 1000).reduce((pre: TableListItem[], cur: number) => {
   const item: TableListItem = {
     key: cur,
     name: 'AppName',
     containers: Math.floor(Math.random() * 20),
     creator: creators[Math.floor(Math.random() * creators.length)],
-    status: Math.floor(Math.random() * 10) % 4,
+    status: valueEnum[Math.floor(Math.random() * 10) % 4],
     createdAt: Date.now() - Math.floor(Math.random() * 2000),
     money: Math.floor(Math.random() * 2000) * cur,
     progress: Math.ceil(Math.random() * 100) + 1,

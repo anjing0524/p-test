@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import Data from '../interfaces/data';
+import { PageRequest, PageResponse } from 'src/interfaces/page';
 
 @Controller('cats')
 export class CatsController {
@@ -9,6 +10,13 @@ export class CatsController {
   @Get()
   findAll(): string {
     return this.catsService.findAll();
+  }
+
+  @Post('/page')
+  findByPage(@Body() qBody: PageRequest): PageResponse {
+    console.log(qBody);
+    const { cursor, size } = qBody;
+    return this.catsService.findByPage({ cursor, size }, {});
   }
 
   @Get('/data')

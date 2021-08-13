@@ -9,12 +9,20 @@ export class CatsService {
   }
 
   // 分页查询
-  findByPage({ cursor, size }, param = {}): PageResponse {
+  findByPage({ cursor, size }, param: any): PageResponse {
     console.log(cursor, size, param);
+    const { status } = param;
+    let fList = mockData;
+    if (status) {
+      // 模拟过滤数据
+      fList = mockData.filter((e) => e.status === status);
+    }
+    // 模拟分页查询
+    const rList = fList.slice(cursor, cursor + size);
     return {
-      data: mockData,
-      total: 100,
-      hasMore: true,
+      data: rList,
+      total: fList.length,
+      hasMore: cursor + size < fList.length,
     };
   }
 }
