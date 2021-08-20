@@ -13,10 +13,10 @@ export class CatsController {
   }
 
   @Post('/add')
-  async addData(@Body() data: TableListItem): Promise<void> {
+  async addData(@Body() data: TableListItem): Promise<TableListItem> {
     console.log(data);
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    return;
+    return data;
   }
 
   @Post('/page')
