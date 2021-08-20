@@ -1,13 +1,13 @@
 export interface TableListItem {
-  key: number;
+  key?: number;
   name: string;
-  containers: number;
-  creator: string;
-  status: string;
-  createdAt: number;
-  progress: number;
-  money: number;
-  memo: string;
+  containers?: number;
+  creator?: string;
+  status?: string;
+  createdAt?: number;
+  progress?: number;
+  money?: number;
+  memo?: string;
 }
 
 export interface PageResponse {

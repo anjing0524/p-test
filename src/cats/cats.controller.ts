@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import Data from '../interfaces/data';
-import { PageRequest, PageResponse } from 'src/interfaces/page';
+import { PageRequest, PageResponse, TableListItem } from 'src/interfaces/page';
 
 @Controller('cats')
 export class CatsController {
@@ -10,6 +10,13 @@ export class CatsController {
   @Get()
   findAll(): string {
     return this.catsService.findAll();
+  }
+
+  @Post('/add')
+  async addData(@Body() data: TableListItem): Promise<void> {
+    console.log(data);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    return;
   }
 
   @Post('/page')
