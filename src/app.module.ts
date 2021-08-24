@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 // import { CatsController } from './cats/cats.controller';
 import { CatsService } from './cats/cats.service';
 import { CatsModule } from './cats/cats.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -14,6 +16,8 @@ import { CatsModule } from './cats/cats.module';
       }),
     }),
     CatsModule,
+    AuthModule,
+    UsersModule,
   ],
   // controllers: [AppController, CatsController],
   controllers: [AppController],
