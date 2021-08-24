@@ -2,7 +2,9 @@ import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import Data from '../interfaces/data';
 import { PageRequest, PageResponse, TableListItem } from 'src/interfaces/page';
+import { SkipAuth } from 'src/auth/skip-auth.meta';
 
+@SkipAuth()
 @Controller('cats')
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
