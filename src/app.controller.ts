@@ -3,7 +3,9 @@ import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { LocalAuthGuard } from './auth/local-auth.guard';
+import { Roles } from './auth/roles.meta';
 import { SkipAuth } from './auth/skip-auth.meta';
+import { Role } from './enums/role.enum';
 
 @Controller()
 export class AppController {
@@ -19,6 +21,7 @@ export class AppController {
     return this.authService.login(req.user);
   }
   @UseGuards(JwtAuthGuard)
+  @Roles(Role.Admin)
   @Get('profile')
   getProfile(@Request() req: any) {
     return req.user;
