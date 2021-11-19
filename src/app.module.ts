@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { GraphQLModule } from '@nestjs/graphql';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -10,6 +11,7 @@ import { RolesGuard } from './auth/roles.guard';
 import { CatsModule } from './cats/cats.module';
 // import { CatsController } from './cats/cats.controller';
 import { CatsService } from './cats/cats.service';
+import { configService } from './config/config.service';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -27,6 +29,7 @@ import { UsersModule } from './users/users.module';
     CatsModule,
     AuthModule,
     UsersModule,
+    TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
   ],
   // controllers: [AppController, CatsController],
   controllers: [AppController],
